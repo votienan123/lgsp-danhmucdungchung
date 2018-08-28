@@ -1,0 +1,9 @@
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="transform-json-output">
+ <payloadFactory media-type="json">
+    <format>$1</format>
+    <args>
+       <arg evaluator="json" expression="$.Entries.Entry"/>
+    </args>
+ </payloadFactory>
+ <respond/>
+</sequence>

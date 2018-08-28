@@ -1,0 +1,65 @@
+<data name="Cmon_DonViHanhChinh" transports="http https local">
+   <config enableOData="false" id="lgsp_common">
+      <property name="driverClassName">org.postgresql.Driver</property>
+      <property name="url">jdbc:postgresql://localhost:5432/lgsp_common</property>
+      <property name="username">postgres</property>
+      <property name="password">1</property>
+   </config>
+   <query id="selectDonViHanhChinhByCapTrenQuery" useConfig="lgsp_common">
+      <sql>SELECT "id", "ma", "ten", "tenTA", "capTren", "cap", "ngayTao", "ngaySua", "daXoa", "apDung", "nguoiTao", "nguoiSua" FROM donvihanhchinh dv1 WHERE "daXoa"=FALSE AND "capTren"=? ORDER BY "ma";</sql>
+      <result element="Entries" rowName="Entry">
+         <element column="id" name="id" xsdType="string"/>
+         <element column="ma" name="ma" xsdType="string"/>
+         <element column="ten" name="ten" xsdType="string"/>
+         <element column="tenTA" name="tenTA" xsdType="string"/>
+         <element column="capTren" name="capTren" xsdType="string"/>
+         <element column="cap" name="cap" xsdType="string"/>
+         <element column="ngayTao" name="ngayTao" xsdType="string"/>
+         <element column="ngaySua" name="ngaySua" xsdType="string"/>
+         <element column="daXoa" name="daXoa" xsdType="string"/>
+         <element column="apDung" name="apDung" xsdType="string"/>
+         <element column="nguoiTao" name="nguoiTao" xsdType="string"/>
+         <element column="nguoiSua" name="nguoiSua" xsdType="string"/>
+      </result>
+      <param name="capTren" ordinal="1" sqlType="STRING"/>
+   </query>
+   <query id="selectDonViHanhChinhByCap" useConfig="lgsp_common">
+      <sql>SELECT "id", "ma", "ten", "tenTA", "capTren", "cap" FROM donvihanhchinh WHERE "daXoa"=FALSE AND "cap"=? ORDER BY "ma";</sql>
+      <result element="Entries" rowName="Entry">
+         <element column="id" name="id" xsdType="string"/>
+         <element column="ma" name="ma" xsdType="string"/>
+         <element column="ten" name="ten" xsdType="string"/>
+         <element column="tenTA" name="tenTA" xsdType="string"/>
+         <element column="capTren" name="capTren" xsdType="string"/>
+         <element column="cap" name="cap" xsdType="string"/>
+      </result>
+      <param name="cap" sqlType="STRING"/>
+   </query>
+   <query id="selectDonViHanhChinhByMaQuery" useConfig="lgsp_common">
+      <sql>SELECT "id", "ma", "ten", "tenTA", "capTren", "cap" FROM donvihanhchinh WHERE "daXoa"=FALSE AND "ma"=?;</sql>
+      <result element="Entries" rowName="Entry">
+         <element column="id" name="id" xsdType="string"/>
+         <element column="ma" name="ma" xsdType="string"/>
+         <element column="ten" name="ten" xsdType="string"/>
+         <element column="tenTA" name="tenTA" xsdType="string"/>
+         <element column="capTren" name="capTren" xsdType="string"/>
+         <element column="cap" name="cap" xsdType="string"/>
+      </result>
+      <param name="ma" sqlType="STRING"/>
+   </query>
+   <resource method="GET" path="donvihanhchinhs/{cap}">
+      <call-query href="selectDonViHanhChinhByCap">
+         <with-param name="cap" query-param="cap"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="donvihanhchinhcapduois/{capTren}">
+      <call-query href="selectDonViHanhChinhByCapTrenQuery">
+         <with-param name="capTren" query-param="capTren"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="donvihanhchinh/{ma}">
+      <call-query href="selectDonViHanhChinhByMaQuery">
+         <with-param name="ma" query-param="ma"/>
+      </call-query>
+   </resource>
+</data>

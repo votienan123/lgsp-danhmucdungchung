@@ -1,0 +1,384 @@
+<data name="DanhMucDungChung" transports="http https local">
+   <config enableOData="false" id="lgsp_common">
+      <property name="driverClassName">org.postgresql.Driver</property>
+      <property name="url">jdbc:postgresql://localhost:5432/lgsp_common</property>
+      <property name="username">postgres</property>
+      <property name="password">1</property>
+   </config>
+   <query id="insertDanTocQuery" returnGeneratedKeys="true" useConfig="lgsp_common">
+      <sql>INSERT INTO dantoc("maDanToc", "tenGoi", "tenKhac", "ngayTao", "ngaySua", "daXoa", "apDung", "nguoiTao", "nguoiSua") VALUES(?,?,?,?,?,?,?,?,?);</sql>
+      <result element="GeneratedKey" rowName="" useColumnNumbers="true">
+         <element column="1" name="ID" xsdType="integer"/>
+      </result>
+      <param name="maDanToc" ordinal="1" sqlType="STRING"/>
+      <param name="tenGoi" ordinal="2" sqlType="STRING"/>
+      <param name="tenKhac" ordinal="3" sqlType="STRING"/>
+      <param defaultValue="2018-01-01T00:00:00" name="ngayTao" ordinal="4" sqlType="TIMESTAMP"/>
+      <param defaultValue="2018-01-01T00:00:00" name="ngaySua" ordinal="5" sqlType="TIMESTAMP"/>
+      <param defaultValue="0" name="daXoa" ordinal="6" sqlType="BIT"/>
+      <param defaultValue="1" name="apDung" ordinal="7" sqlType="BIT"/>
+      <param name="nguoiTao" ordinal="8" sqlType="STRING"/>
+      <param name="nguoiSua" ordinal="9" sqlType="STRING"/>
+   </query>
+   <query id="selectDanTocQuery" useConfig="lgsp_common">
+      <sql>SELECT "id", "maDanToc", "tenGoi", "tenKhac", "daXoa", "apDung", "ngayTao", "ngaySua", "nguoiTao" FROM dantoc WHERE "daXoa"=FALSE;</sql>
+      <result element="Entries" rowName="Entry">
+         <element column="id" name="id" xsdType="string"/>
+         <element column="maDanToc" name="maDanToc" xsdType="string"/>
+         <element column="tenGoi" name="tenGoi" xsdType="string"/>
+         <element column="tenKhac" name="tenKhac" xsdType="string"/>
+         <element column="daXoa" name="daXoa" xsdType="string"/>
+         <element column="apDung" name="apDung" xsdType="string"/>
+         <element column="ngayTao" name="ngayTao" xsdType="string"/>
+         <element column="ngaySua" name="ngaySua" xsdType="string"/>
+         <element column="nguoiTao" name="nguoiTao" xsdType="string"/>
+      </result>
+   </query>
+   <query id="selectDanTocById" useConfig="lgsp_common">
+      <sql>SELECT "id", "maDanToc", "tenGoi", "tenKhac", "daXoa", "apDung", "ngayTao", "ngaySua", "nguoiTao", "nguoiSua" FROM dantoc WHERE "daXoa"=FALSE AND "id"=?;</sql>
+      <result element="Entry" rowName="">
+         <element column="id" name="id" xsdType="string"/>
+         <element column="maDanToc" name="maDanToc" xsdType="string"/>
+         <element column="tenGoi" name="tenGoi" xsdType="string"/>
+         <element column="tenKhac" name="tenKhac" xsdType="string"/>
+         <element column="daXoa" name="daXoa" xsdType="string"/>
+         <element column="apDung" name="apDung" xsdType="string"/>
+         <element column="ngayTao" name="ngayTao" xsdType="string"/>
+         <element column="ngaySua" name="ngaySua" xsdType="string"/>
+         <element column="nguoiTao" name="nguoiTao" xsdType="string"/>
+         <element column="nguoiSua" name="nguoiSua" xsdType="string"/>
+      </result>
+      <param name="id" sqlType="INTEGER"/>
+   </query>
+   <query id="updateDanTocQuery" returnUpdatedRowCount="true" useConfig="lgsp_common">
+      <sql>UPDATE dantoc SET&#xd;"maDanToc"=?, "tenGoi"=?, "tenKhac"=?, "daXoa"=?, "apDung"=?, "ngayTao"=?, "ngaySua"=?, "nguoiTao"=?, "nguoiSua"=? WHERE "id"=?</sql>
+      <result element="UpdatedRowCount" rowName="" useColumnNumbers="true">
+         <element column="1" name="updatedRows" xsdType="integer"/>
+      </result>
+      <param name="maDanToc" ordinal="1" sqlType="STRING"/>
+      <param name="tenGoi" ordinal="2" sqlType="STRING"/>
+      <param name="tenKhac" ordinal="3" sqlType="STRING"/>
+      <param name="daXoa" ordinal="4" sqlType="BOOLEAN"/>
+      <param name="apDung" ordinal="5" sqlType="BOOLEAN"/>
+      <param defaultValue="2018-01-01T00:00:00" name="ngayTao" ordinal="6" sqlType="TIMESTAMP"/>
+      <param defaultValue="2018-01-01T00:00:00" name="ngaySua" ordinal="7" sqlType="TIMESTAMP"/>
+      <param name="nguoiTao" ordinal="8" sqlType="STRING"/>
+      <param name="nguoiSua" ordinal="9" sqlType="STRING"/>
+      <param name="id" ordinal="10" sqlType="INTEGER"/>
+   </query>
+   <query id="selectDonViDoLuongQuery" useConfig="lgsp_common">
+      <sql>SELECT "id","daiLuong", "loai", "tenDonVi","tenTA","kyHieu","kyHieuSI","daXoa", "apDung", "ngaySua", "ngayTao", "nguoiTao", "nguoiSua" FROM donvidoluong WHERE "daXoa"=false;</sql>
+      <result element="Entries" rowName="Entry">
+         <element column="id" name="id" xsdType="string"/>
+         <element column="daiLuong" name="daiLuong" xsdType="string"/>
+         <element column="loai" name="loai" xsdType="string"/>
+         <element column="tenDonVi" name="tenDonVi" xsdType="string"/>
+         <element column="tenTA" name="tenTA" xsdType="string"/>
+         <element column="kyHieu" name="kyHieu" xsdType="string"/>
+         <element column="kyHieuSI" name="kyHieuSI" xsdType="string"/>
+         <element column="daXoa" name="daXoa" xsdType="string"/>
+         <element column="apDung" name="apDung" xsdType="string"/>
+         <element column="ngayTao" name="ngayTao" xsdType="string"/>
+         <element column="ngaySua" name="ngaySua" xsdType="string"/>
+         <element column="nguoiTao" name="nguoiTao" xsdType="string"/>
+         <element column="nguoiSua" name="nguoiSua" xsdType="string"/>
+      </result>
+   </query>
+   <query id="selectDonViDoLuongById" useConfig="lgsp_common">
+      <sql>SELECT "id","daiLuong", "loai", "tenDonVi","tenTA","kyHieu","kyHieuSI","ngayTao", "ngaySua", "daXoa", "apDung", "nguoiTao", "nguoiSua" FROM donvidoluong WHERE "id"=? "daXoa"=false;</sql>
+      <result element="Entry" rowName="">
+         <element column="daiLuong" name="daiLuong" xsdType="string"/>
+         <element column="loai" name="loai" xsdType="string"/>
+         <element column="tenDonVi" name="tenDonVi" xsdType="string"/>
+         <element column="tenTA" name="tenTA" xsdType="string"/>
+         <element column="kyHieu" name="kyHieu" xsdType="string"/>
+         <element column="kyHieuSI" name="kyHieuSI" xsdType="string"/>
+         <element column="ngayTao" name="ngayTao" xsdType="string"/>
+         <element column="ngaySua" name="ngaySua" xsdType="string"/>
+         <element column="daXoa" name="daXoa" xsdType="string"/>
+         <element column="apDung" name="apDung" xsdType="string"/>
+         <element column="nguoiTao" name="nguoiTao" xsdType="string"/>
+         <element column="nguoiSua" name="nguoiSua" xsdType="string"/>
+         <element column="id" name="id" xsdType="string"/>
+      </result>
+      <param name="id" ordinal="1" sqlType="INTEGER"/>
+   </query>
+   <query id="updateDonViDoLuongQuery" returnUpdatedRowCount="true" useConfig="lgsp_common">
+      <sql>UPDATE donvidoluong SET "daiLuong"=?, "loai"=?, "tenDonVi"=?, "tenTA"=?,"kyHieu"=?,"kyHieuSI"=?,"ngayTao"=?, "ngaySua"=?, "daXoa"=?, "apDung"=?, "nguoiTao"=?, "nguoiSua"=? WHERE "id"=?</sql>
+      <result element="UpdatedRowCount" rowName="" useColumnNumbers="true">
+         <element column="1" name="Value" xsdType="integer"/>
+      </result>
+      <param name="daiLuong" ordinal="1" sqlType="STRING"/>
+      <param name="loai" ordinal="2" sqlType="INTEGER"/>
+      <param name="tenDonVi" ordinal="3" sqlType="STRING"/>
+      <param name="tenTA" ordinal="4" sqlType="STRING"/>
+      <param name="kyHieu" ordinal="5" sqlType="STRING"/>
+      <param name="kyHieuSI" ordinal="6" sqlType="STRING"/>
+      <param defaultValue="2018-01-01T00:00:00" name="ngayTao" ordinal="7" sqlType="TIMESTAMP"/>
+      <param defaultValue="2018-01-01T00:00:00" name="ngaySua" ordinal="8" sqlType="TIMESTAMP"/>
+      <param name="daXoa" ordinal="9" sqlType="BIT"/>
+      <param name="apDung" ordinal="10" sqlType="BIT"/>
+      <param name="nguoiTao" ordinal="11" sqlType="STRING"/>
+      <param name="nguoiSua" ordinal="12" sqlType="STRING"/>
+      <param name="id" ordinal="13" sqlType="INTEGER"/>
+   </query>
+   <query id="insertDonViDoLuongQuery" returnGeneratedKeys="true" useConfig="lgsp_common">
+      <sql>INSERT INTO donvidoluong("daiLuong", "loai", "tenDonVi", "tenTA", "kyHieu", "kyHieuSI", "ngayTao", "ngaySua", "daXoa", "apDung", "nguoiTao", "nguoiSua") VALUES (?,?,?,?,?,?,?,?,?,?,?,?);</sql>
+      <result element="GeneratedKeys" rowName="" useColumnNumbers="true">
+         <element column="1" name="ID" xsdType="integer"/>
+      </result>
+      <param name="daiLuong" ordinal="1" sqlType="STRING"/>
+      <param name="loai" ordinal="2" sqlType="INTEGER"/>
+      <param name="tenDonVi" ordinal="3" sqlType="STRING"/>
+      <param name="tenTA" ordinal="4" sqlType="STRING"/>
+      <param name="kyHieu" ordinal="5" sqlType="STRING"/>
+      <param name="kyHieuSI" ordinal="6" sqlType="STRING"/>
+      <param defaultValue="2018-01-01T00:00:00" name="ngayTao" ordinal="7" sqlType="TIMESTAMP"/>
+      <param defaultValue="2018-01-01T00:00:00" name="ngaySua" ordinal="8" sqlType="TIMESTAMP"/>
+      <param name="daXoa" ordinal="9" sqlType="BIT"/>
+      <param name="apDung" ordinal="10" sqlType="BIT"/>
+      <param name="nguoiTao" ordinal="11" sqlType="STRING"/>
+      <param name="nguoiSua" ordinal="12" sqlType="STRING"/>
+   </query>
+   <query id="selectLoaiDonViDoLuongQuery" useConfig="lgsp_common">
+      <sql>SELECT "id", "ten","ngayTao", "ngaySua", "daXoa", "apDung", "nguoiTao", "nguoiSua" FROM loaidonvidoluong WHERE "daXoa"=false;</sql>
+      <result element="Entries" rowName="Entry">
+         <element column="id" name="id" xsdType="string"/>
+         <element column="ten" name="ten" xsdType="string"/>
+         <element column="ngayTao" name="ngayTao" xsdType="string"/>
+         <element column="ngaySua" name="ngaySua" xsdType="string"/>
+         <element column="daXoa" name="daXoa" xsdType="string"/>
+         <element column="apDung" name="apDung" xsdType="string"/>
+         <element column="nguoiTao" name="nguoiTao" xsdType="string"/>
+         <element column="nguoiSua" name="nguoiSua" xsdType="string"/>
+      </result>
+   </query>
+   <query id="selectLoaiDonViDoLuongByIdQuery" useConfig="lgsp_common">
+      <sql>SELECT "ten","ngayTao", "ngaySua", "daXoa", "apDung", "nguoiTao", "nguoiSua" FROM loaidonvidoluong WHERE "id"=?;</sql>
+      <result element="Entry" rowName="">
+         <element column="ten" name="ten" xsdType="string"/>
+         <element column="ngayTao" name="ngayTao" xsdType="string"/>
+         <element column="ngaySua" name="ngaySua" xsdType="string"/>
+         <element column="daXoa" name="daXoa" xsdType="string"/>
+         <element column="apDung" name="apDung" xsdType="string"/>
+         <element column="nguoiTao" name="nguoiTao" xsdType="string"/>
+         <element column="nguoiSua" name="nguoiSua" xsdType="string"/>
+      </result>
+      <param name="id" ordinal="1" sqlType="INTEGER"/>
+   </query>
+   <query id="selectDonViHanhChinhCapTinhQuery" useConfig="lgsp_common">
+      <sql>SELECT "id", "ma", "ten", "tenTA", "capTren", "cap", "ngayTao", "ngaySua", "daXoa", "apDung", "nguoiTao", "nguoiSua", (select count(dv2.id) from donvihanhchinh dv2 where dv2."daXoa"=FALSE AND dv2."capTren" = dv1.ma) as "soCapDuoi" FROM donvihanhchinh dv1 WHERE "daXoa"=FALSE AND ("capTren"='0' OR "capTren" is null) ORDER BY "ma";</sql>
+      <result element="Entries" rowName="Entry">
+         <element column="id" name="id" xsdType="string"/>
+         <element column="ma" name="ma" xsdType="string"/>
+         <element column="ten" name="ten" xsdType="string"/>
+         <element column="tenTA" name="tenTA" xsdType="string"/>
+         <element column="capTren" name="capTren" xsdType="string"/>
+         <element column="cap" name="cap" xsdType="string"/>
+         <element column="ngayTao" name="ngayTao" xsdType="string"/>
+         <element column="ngaySua" name="ngaySua" xsdType="string"/>
+         <element column="daXoa" name="daXoa" xsdType="string"/>
+         <element column="apDung" name="apDung" xsdType="string"/>
+         <element column="nguoiTao" name="nguoiTao" xsdType="string"/>
+         <element column="nguoiSua" name="nguoiSua" xsdType="string"/>
+         <element column="soCapDuoi" name="soCapDuoi" xsdType="string"/>
+      </result>
+   </query>
+   <query id="insertDonViHanhChinhQuery" useConfig="lgsp_common">
+      <sql>INSERT INTO donvihanhchinh("ma", "ten", "tenTA", "capTren", "cap", "ngayTao", "ngaySua", "daXoa", "apDung", "nguoiTao", "nguoiSua") VALUES(?,?,?,?,?,?,?,?,?,?,?);</sql>
+      <param name="ma" ordinal="1" sqlType="STRING"/>
+      <param name="ten" ordinal="2" sqlType="STRING"/>
+      <param name="tenTA" ordinal="3" sqlType="STRING"/>
+      <param defaultValue="0" name="capTren" ordinal="4" sqlType="STRING"/>
+      <param name="cap" ordinal="5" sqlType="STRING"/>
+      <param defaultValue="2018-01-01T00:00:00" name="ngayTao" ordinal="6" sqlType="TIMESTAMP"/>
+      <param defaultValue="2018-01-01T00:00:00" name="ngaySua" ordinal="7" sqlType="TIMESTAMP"/>
+      <param name="daXoa" ordinal="8" sqlType="BIT"/>
+      <param name="apDung" ordinal="9" sqlType="BIT"/>
+      <param name="nguoiTao" ordinal="10" sqlType="STRING"/>
+      <param name="nguoiSua" ordinal="11" sqlType="STRING"/>
+   </query>
+   <query id="updateDonViHanhChinhQuery" useConfig="lgsp_common">
+      <sql>UPDATE donvihanhchinh SET "ma"=?, "ten"=?, "tenTA"=?, "capTren"=?, "cap"=?, "ngayTao"=?, "ngaySua"=?, "daXoa"=?, "apDung"=?, "nguoiTao"=?, "nguoiSua"=? WHERE "daXoa"=FALSE AND id=?;</sql>
+      <param name="ma" ordinal="1" sqlType="STRING"/>
+      <param name="ten" ordinal="2" sqlType="STRING"/>
+      <param name="tenTA" ordinal="3" sqlType="STRING"/>
+      <param defaultValue="0" name="capTren" ordinal="4" sqlType="STRING"/>
+      <param name="cap" ordinal="5" sqlType="STRING"/>
+      <param defaultValue="2018-01-01T00:00:00" name="ngayTao" ordinal="6" sqlType="TIMESTAMP"/>
+      <param defaultValue="2018-01-01T00:00:00" name="ngaySua" ordinal="7" sqlType="TIMESTAMP"/>
+      <param name="daXoa" ordinal="8" sqlType="BIT"/>
+      <param name="apDung" ordinal="9" sqlType="BIT"/>
+      <param name="nguoiTao" ordinal="10" sqlType="STRING"/>
+      <param name="nguoiSua" ordinal="11" sqlType="STRING"/>
+      <param name="id" ordinal="12" sqlType="INTEGER"/>
+   </query>
+   <query id="selectDonViHanhChinhByCapTrenQuery" useConfig="lgsp_common">
+      <sql>SELECT "id", "ma", "ten", "tenTA", "capTren", "cap", "ngayTao", "ngaySua", "daXoa", "apDung", "nguoiTao", "nguoiSua", (select count(dv2.id) from donvihanhchinh dv2 where dv2."daXoa"=FALSE AND dv2."capTren" = dv1.ma) as "soCapDuoi" FROM donvihanhchinh dv1 WHERE "daXoa"=FALSE AND "capTren"=? ORDER BY "ma";</sql>
+      <result element="Entries" rowName="Entry">
+         <element column="id" name="id" xsdType="string"/>
+         <element column="ma" name="ma" xsdType="string"/>
+         <element column="ten" name="ten" xsdType="string"/>
+         <element column="tenTA" name="tenTA" xsdType="string"/>
+         <element column="capTren" name="capTren" xsdType="string"/>
+         <element column="cap" name="cap" xsdType="string"/>
+         <element column="ngayTao" name="ngayTao" xsdType="string"/>
+         <element column="ngaySua" name="ngaySua" xsdType="string"/>
+         <element column="daXoa" name="daXoa" xsdType="string"/>
+         <element column="apDung" name="apDung" xsdType="string"/>
+         <element column="nguoiTao" name="nguoiTao" xsdType="string"/>
+         <element column="nguoiSua" name="nguoiSua" xsdType="string"/>
+         <element column="soCapDuoi" name="soCapDuoi" xsdType="string"/>
+      </result>
+      <param name="capTren" ordinal="1" sqlType="STRING"/>
+   </query>
+   <query id="selectDonViHanhChinhByIdQuery" useConfig="lgsp_common">
+      <sql>SELECT "id", "ma", "ten", "tenTA", "capTren", "cap", "ngayTao", "ngaySua", "daXoa", "apDung", "nguoiTao", "nguoiSua", (select count(dv2.id) from donvihanhchinh dv2 where dv2."daXoa"=FALSE AND dv2."capTren" = dv1.ma) as "soCapDuoi" FROM donvihanhchinh dv1 WHERE "daXoa"=FALSE AND "id"=?;</sql>
+      <result element="Entries" rowName="Entry">
+         <element column="id" name="id" xsdType="string"/>
+         <element column="ma" name="ma" xsdType="string"/>
+         <element column="ten" name="ten" xsdType="string"/>
+         <element column="tenTA" name="tenTA" xsdType="string"/>
+         <element column="capTren" name="capTren" xsdType="string"/>
+         <element column="cap" name="cap" xsdType="string"/>
+         <element column="ngayTao" name="ngayTao" xsdType="string"/>
+         <element column="ngaySua" name="ngaySua" xsdType="string"/>
+         <element column="daXoa" name="daXoa" xsdType="string"/>
+         <element column="apDung" name="apDung" xsdType="string"/>
+         <element column="nguoiTao" name="nguoiTao" xsdType="string"/>
+         <element column="nguoiSua" name="nguoiSua" xsdType="string"/>
+         <element column="soCapDuoi" name="soCapDuoi" xsdType="string"/>
+      </result>
+      <param name="id" ordinal="1" sqlType="INTEGER"/>
+   </query>
+   <resource method="GET" path="dantocs">
+      <call-query href="selectDanTocQuery"/>
+   </resource>
+   <resource method="POST" path="dantoc">
+      <call-query href="insertDanTocQuery">
+         <with-param name="maDanToc" query-param="maDanToc"/>
+         <with-param name="tenGoi" query-param="tenGoi"/>
+         <with-param name="tenKhac" query-param="tenKhac"/>
+         <with-param name="ngayTao" query-param="ngayTao"/>
+         <with-param name="ngaySua" query-param="ngaySua"/>
+         <with-param name="daXoa" query-param="daXoa"/>
+         <with-param name="apDung" query-param="apDung"/>
+         <with-param name="nguoiTao" query-param="nguoiTao"/>
+         <with-param name="nguoiSua" query-param="nguoiSua"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="dantoc/{id}">
+      <description>Get dan toc by id</description>
+      <call-query href="selectDanTocById">
+         <with-param name="id" query-param="id"/>
+      </call-query>
+   </resource>
+   <resource method="PUT" path="dantoc">
+      <description>update dan toc</description>
+      <call-query href="updateDanTocQuery">
+         <with-param name="maDanToc" query-param="maDanToc"/>
+         <with-param name="tenGoi" query-param="tenGoi"/>
+         <with-param name="tenKhac" query-param="tenKhac"/>
+         <with-param name="daXoa" query-param="daXoa"/>
+         <with-param name="apDung" query-param="apDung"/>
+         <with-param name="ngayTao" query-param="ngayTao"/>
+         <with-param name="ngaySua" query-param="ngaySua"/>
+         <with-param name="nguoiTao" query-param="nguoiTao"/>
+         <with-param name="nguoiSua" query-param="nguoiSua"/>
+         <with-param name="id" query-param="id"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="loaidonvidoluongs">
+      <call-query href="selectLoaiDonViDoLuongQuery"/>
+   </resource>
+   <resource method="GET" path="loaidonvidoluong/{id}">
+      <call-query href="selectLoaiDonViDoLuongByIdQuery">
+         <with-param name="id" query-param="id"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="donvidoluongs">
+      <call-query href="selectDonViDoLuongQuery"/>
+   </resource>
+   <resource method="GET" path="donvidoluong/{id}">
+      <call-query href="selectDonViDoLuongById">
+         <with-param name="id" query-param="id"/>
+      </call-query>
+   </resource>
+   <resource method="POST" path="donvidoluong">
+      <call-query href="insertDonViDoLuongQuery">
+         <with-param name="daiLuong" query-param="daiLuong"/>
+         <with-param name="loai" query-param="loai"/>
+         <with-param name="tenDonVi" query-param="tenDonVi"/>
+         <with-param name="tenTA" query-param="tenTA"/>
+         <with-param name="kyHieu" query-param="kyHieu"/>
+         <with-param name="kyHieuSI" query-param="kyHieuSI"/>
+         <with-param name="ngayTao" query-param="ngayTao"/>
+         <with-param name="ngaySua" query-param="ngaySua"/>
+         <with-param name="daXoa" query-param="daXoa"/>
+         <with-param name="apDung" query-param="apDung"/>
+         <with-param name="nguoiTao" query-param="nguoiTao"/>
+         <with-param name="nguoiSua" query-param="nguoiSua"/>
+      </call-query>
+   </resource>
+   <resource method="PUT" path="donvidoluong">
+      <call-query href="updateDonViDoLuongQuery">
+         <with-param name="daiLuong" query-param="daiLuong"/>
+         <with-param name="loai" query-param="loai"/>
+         <with-param name="tenDonVi" query-param="tenDonVi"/>
+         <with-param name="tenTA" query-param="tenTA"/>
+         <with-param name="kyHieu" query-param="kyHieu"/>
+         <with-param name="kyHieuSI" query-param="kyHieuSI"/>
+         <with-param name="ngayTao" query-param="ngayTao"/>
+         <with-param name="ngaySua" query-param="ngaySua"/>
+         <with-param name="daXoa" query-param="daXoa"/>
+         <with-param name="apDung" query-param="apDung"/>
+         <with-param name="nguoiTao" query-param="nguoiTao"/>
+         <with-param name="nguoiSua" query-param="nguoiSua"/>
+         <with-param name="id" query-param="id"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="donvihanhchinhcaptinhs">
+      <call-query href="selectDonViHanhChinhCapTinhQuery"/>
+   </resource>
+   <resource method="POST" path="donvihanhchinh">
+      <call-query href="insertDonViHanhChinhQuery">
+         <with-param name="ma" query-param="ma"/>
+         <with-param name="ten" query-param="ten"/>
+         <with-param name="tenTA" query-param="tenTA"/>
+         <with-param name="capTren" query-param="capTren"/>
+         <with-param name="cap" query-param="cap"/>
+         <with-param name="ngayTao" query-param="ngayTao"/>
+         <with-param name="ngaySua" query-param="ngaySua"/>
+         <with-param name="daXoa" query-param="daXoa"/>
+         <with-param name="apDung" query-param="apDung"/>
+         <with-param name="nguoiTao" query-param="nguoiTao"/>
+         <with-param name="nguoiSua" query-param="nguoiSua"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="donvihanhchinhcapduois/{capTren}">
+      <call-query href="selectDonViHanhChinhByCapTrenQuery">
+         <with-param name="capTren" query-param="capTren"/>
+      </call-query>
+   </resource>
+   <resource method="PUT" path="donvihanhchinh">
+      <call-query href="updateDonViHanhChinhQuery">
+         <with-param name="ma" query-param="ma"/>
+         <with-param name="ten" query-param="ten"/>
+         <with-param name="tenTA" query-param="tenTA"/>
+         <with-param name="capTren" query-param="capTren"/>
+         <with-param name="cap" query-param="cap"/>
+         <with-param name="ngayTao" query-param="ngayTao"/>
+         <with-param name="ngaySua" query-param="ngaySua"/>
+         <with-param name="daXoa" query-param="daXoa"/>
+         <with-param name="apDung" query-param="apDung"/>
+         <with-param name="nguoiTao" query-param="nguoiTao"/>
+         <with-param name="nguoiSua" query-param="nguoiSua"/>
+         <with-param name="id" query-param="id"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="donvihanhchinh/{id}">
+      <call-query href="selectDonViHanhChinhByIdQuery">
+         <with-param name="id" query-param="id"/>
+      </call-query>
+   </resource>
+</data>
